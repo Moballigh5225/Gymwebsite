@@ -1,6 +1,7 @@
 import React from "react";
 import "./hero.css";
 import Header from "../Header/Header";
+import NumberCounter from "number-counter";
 // importing motion from the framer motion
 import { motion } from "framer-motion";
 
@@ -12,9 +13,10 @@ import Calories from "../../assets/calories.png";
 
 const Hero = () => {
   const transition = { type: "spring", duration: 3 };
+  const mobile = window.innerWidth <= 768 ? true : false;
 
   return (
-    <div className="hero">
+    <div className="hero" id="home">
       <div className="blur hero-blur"></div>
       <div className="left-h">
         <Header />
@@ -24,7 +26,7 @@ const Hero = () => {
         <div className="the-best-ad">
           {/* used framer motion for animation */}
           <motion.div
-            initial={{ left: "238px" }}
+            initial={{ left: mobile ? "165px" : "238px" }}
             whileInView={{ left: "8px" }}
             transition={{ ...transition, type: "tween" }}
           ></motion.div>
@@ -50,15 +52,23 @@ const Hero = () => {
         {/* Figures-Number Display */}
         <div className="figures">
           <div>
-            <span>+140</span>
+            <span>
+              <NumberCounter end={140} start={100} delay="4" preFix="+" />
+            </span>
             <span>expert coaches</span>
           </div>
           <div>
-            <span>+1978</span>
+            <span>
+              {" "}
+              <NumberCounter end={1978} start={1800} delay="4" preFix="+" />
+            </span>
             <span>members joined</span>
           </div>
           <div>
-            <span>+50</span>
+            <span>
+              {" "}
+              <NumberCounter end={50} start={0} delay="4" preFix="+" />
+            </span>
             <span>fitness programs</span>
           </div>
         </div>
